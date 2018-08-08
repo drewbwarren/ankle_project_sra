@@ -7,11 +7,11 @@ tf = 10;
 % Positional input
 
 % Frontal rotation
-frontal_amp = 0.01; %0*0.06;
+frontal_amp = 0*0.01; %0*0.06;
 frontal_frq = 10;
 
 % Sagittal rotation
-sagittal_amp = 0.05; %0*.115;
+sagittal_amp = 0*0.05; %0*.115;
 sagittal_frq = 1;
 sagittal_offset = -.1; %-.15; %-.2;
 
@@ -31,11 +31,11 @@ foot_w = 5; % cm
 foot_l = foot_w;
 foot_h = foot_w;
 
-actuator_base_l = 40; % cm
+actuator_base_l = 30; % cm
 actuator_base_w = 5; % cm
 actuator_base_h = actuator_base_w;
 
-actuator_extender_l = 40; % cm
+actuator_extender_l = 30; % cm
 actuator_extender_w = 3;
 actuator_extender_h = actuator_extender_w;
 
@@ -45,37 +45,26 @@ theta_r = 120;
 theta_l = -120;
 
 
+%% Kinematics
+
+h = .6168; % This was just measured from the zero position in the sim
+h = 0;
+P = actuator_base_l + actuator_extender_l; P = P/100; P = actuator_base_l/100;
+
+% Desired motion
+t = linspace(0,tf,10000);
+theta = 20*sin(2*t)*pi/180 - 0*pi/180;
+phi = 15*sin(4*t)*pi/180 + 0*pi/180;
+z = .2*sin(t);
+
+vars = table(r,theta,phi,h,P,z);
+[P1,P2,P3] = position(vars);
+
+P1 = cat(2,t',P1');
+P2 = cat(2,t',P2');
+P3 = cat(2,t',P3');
+
 %% Run the sim
 
 sim('RPS3Dof.slx')
 
-
-
-%% Extract data about the ankle
-
-% t = ankle_p.time;
-% 
-% % Orientation - deg
-% ankle_roll = ankle_p.data(:,1,:);
-% ankle_pitch = ankle_p.data(:,2,:);
-% ankle_yaw = ankle_p.data(:,3,:);
-% clear ankle_p
-% max_roll = max(ankle_roll)
-% max_pitch = max(ankle_pitch)
-% 
-% % Velocty - deg/s
-% ankle_wx = ankle_w.data(:,1,:);
-% ankle_wy = ankle_w.data(:,2,:);
-% ankle_wz = ankle_w.data(:,3,:);
-% clear ankle_w
-% max_wx = max(ankle_wx)
-% max_wy = max(ankle_wy)
-% 
-% % Actuation force - units should be N, but I should double check
-% actuator_force_left = actuation_force.data(:,1,:);
-% actuator_force_back = actuation_force.data(:,2,:);
-% actuator_force_right = actuation_force.data(:,3,:);
-% clear actuation_force
-% max_f_left = max(actuator_force_left)
-% max_f_back = max(actuator_force_back)
-% max_f_right= max(actuator_force_right)

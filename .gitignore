@@ -1,4 +1,6 @@
 old
-.slxc
+*.slxc
 slprj
+*.autosave
+*.m~
 

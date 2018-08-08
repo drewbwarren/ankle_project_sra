@@ -11,15 +11,7 @@ L3 = u.L3;
 l3 = u.l3;
 h = u.h;
 
-% Pback0 = sqrt(L1^2 + l1^2 + h^2 - 2*l1*(L1*cos(0) - h*sin(0))) - P;%cos(theta);
-% Pside0 = sqrt(L2^2 + l2^2 + h^2 - 2*l2*(L2*cos(0) + h*sin(0))) - P;
-% 
-% Pback = sqrt(L1^2 + l1^2 + h^2 - 2*l1*(L1*cos(theta) - h*sin(theta)));
-% Pside = sqrt(L2^2 + l2^2 + h^2 - 2*l2*(L2*cos(phi) + h*sin(phi)));
-% 
-% 
-% Pback = Pback - P; % - Pback0;
-% Pside = Pside - P; % - Pside0 ;
+
 
 x = 0.00;
 z = u.z;
