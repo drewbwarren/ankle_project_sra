@@ -54,12 +54,10 @@ theta = 20*sin(200/20*t)*pi/180 ;
 phi = 15*sin(115/15*t)*pi/180;
 
 vars = table(L1,L2,l1,l2,theta,phi,h,P);
-[P1,P2,P3,P4] = position(vars);
+[P1,P2] = position(vars);
 
 P1 = cat(2,t',P1');
 P2 = cat(2,t',P2');
-P3 = cat(2,t',P3');
-P4 = cat(2,t',P4');
 
 
 sim('rp_2dof.slx')
