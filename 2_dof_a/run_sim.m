@@ -56,64 +56,12 @@ phi = 15*sin(115/15*t)*pi/180;
 vars = table(L1,L2,l1,l2,theta,phi,h,P);
 [P1,P2,P3,P4] = position(vars);
 
-% P1 = 0*t - .01;
-% P3 = 0*t + .01;
-% P2 = 0*t + .01;
-
-% P3 = -P1;
-% P4 = -P2;
-
 P1 = cat(2,t',P1');
 P2 = cat(2,t',P2');
 P3 = cat(2,t',P3');
 P4 = cat(2,t',P4');
-max(P1(:,2))-min(P1(:,2))
-max(P2(:,2))-min(P2(:,2))
-max(P3(:,2))-min(P3(:,2))
-max(P4(:,2))-min(P4(:,2))
 
 
-sim('rp_2dof_2016a.slx')
+sim('rp_2dof.slx')
 
 
-% This is for checking the output orientation against the desired
-% orientation
-% theta_test = pose.data(:,2);
-% theta_test = theta_test(1:10000);
-% theta_test = theta_test';
-% phi_test = pose.data(:,1);
-% phi_test = phi_test(1:10000);
-% phi_test = phi_test';
-% diff = theta*180/pi - theta_test;
-% diff2 = phi*180/pi - phi_test;
-% figure
-% plot(t,diff)
-% hold on
-% plot(t,diff2)
-
-max(P1_force)
-max(P2_force)
-% max(P3_force)
-% max(P4_force)
-max(center_force)
-
-figure
-hold on
-plot(P1_force)
-plot(P2_force)
-% plot(P3_force)
-% plot(P4_force)
-plot(center_force)
-
-%%
-figure
-hold on
-plot(P1_sphere)
-plot(P2_sphere)
-
-max(P1_sphere.data(:,1))
-max(P1_sphere.data(:,2))
-max(P1_sphere.data(:,3))
-max(P2_sphere.data(:,1))
-max(P2_sphere.data(:,2))
-max(P2_sphere.data(:,3))
