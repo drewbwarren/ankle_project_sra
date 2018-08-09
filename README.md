@@ -8,3 +8,5 @@
 
 2_dof_b is the same as the previous design but has 4 motors, 2 for each direction, in order to reduce the load on each motor. This design still has the same problem with the point of rotation not at the ankle.
 
+2_dof_c is the same as the previous device, but the platform has been modified so that the foot is lowered and the point of rotation is at the ankle.
+
