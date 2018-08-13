@@ -8,18 +8,18 @@ r = .4;
 R = r*sind(60);
 L1 = .2;
 L2 = .2;
-h = .0;
+h = .4268;
 
 actuator_length = 0.25;
-P = actuator_length;
+P = actuator_length*2;
 
 % Desired motion
 m = 10000;
 tf = 10;
 t = linspace(0,tf,m);
-theta = 0*sin(115/15*t)*pi/180; 
-phi = 0*sin(10*t)*pi/180;
-z = .0*sin(.5*t);
+theta = 20*sin(115/15*t)*pi/180; 
+phi = 15*sin(10*t)*pi/180;
+z = .1*sin(.5*t);
 H = h+z;
 
 
