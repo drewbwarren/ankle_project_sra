@@ -48,18 +48,19 @@ theta_l = -120;
 %% Kinematics
 
 h = .6168; % This was just measured from the zero position in the sim
-h = 0;
-P = actuator_base_l + actuator_extender_l; P = P/100; P = actuator_base_l/100;
+% h = .511;
+P = actuator_base_l + actuator_extender_l; P = P/100; % P = actuator_base_l/100;
 
 % Desired motion
 t = linspace(0,tf,10000);
-theta = 20*sin(2*t)*pi/180 - 0*pi/180;
-phi = 15*sin(4*t)*pi/180 + 0*pi/180;
+theta = 0*sin(2*t)*pi/180 - 0*pi/180;
+phi = 0*sin(4*t)*pi/180 + 0*pi/180;
 z = .2*sin(t);
 
 vars = table(r,theta,phi,h,P,z);
 [P1,P2,P3] = position(vars);
 
+% P1 = 0*t; P2 = P1; P3 = P1;
 P1 = cat(2,t',P1');
 P2 = cat(2,t',P2');
 P3 = cat(2,t',P3');
