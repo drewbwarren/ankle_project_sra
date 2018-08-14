@@ -4,11 +4,12 @@ clear
 close all
 
 
-r = .4;
-R = r*sind(60);
-L1 = .2;
-L2 = .2;
+L1 = .4;
+L2 = L1*sind(60);
+l1 = .2;
+l2 = .2;
 h = .4268;
+f = .05;
 
 actuator_length = 0.25;
 P = actuator_length*2;
@@ -23,7 +24,7 @@ z = .1*sin(.5*t);
 H = h+z;
 
 
-vars = table(r,R,L1,L2,theta,phi,H,P);
+vars = table(L1,L2,l1,l2,theta,phi,H,P,f);
 [Pfront,Pleft,Pright] = actuator_positions(vars);
 
 % Pfront = 0*t;
