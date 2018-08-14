@@ -26,25 +26,18 @@ foot_p = 150/(foot_h*foot_l*foot_w)/2;
 
 
 % Kinematic parameters
-L1 = 0.2;
-L2 = 0.1;
-l1 = .33/2;
-l2 = .13/2;
-h = .125;
-
-
-
 L1 = .08;
 L2 = .1;
 l1 = .08;
 l2 = .1;
-h = .125;
+f = foot_h;
+h = .125+f;
+P = h-f;
+
 
 plat_w = l2*2;
 plat_l = l1*2;
-middle_leg = h;
-P = h;
-
+middle_leg = h-f;
 
 
 
@@ -53,7 +46,7 @@ t = linspace(0,tf,10000);
 theta = 20*sin(200/20*t)*pi/180 ;
 phi = 15*sin(115/15*t)*pi/180;
 
-vars = table(L1,L2,l1,l2,theta,phi,h,P);
+vars = table(L1,L2,l1,l2,theta,phi,h,P,f);
 [P1,P2,P3,P4] = position(vars);
 
 

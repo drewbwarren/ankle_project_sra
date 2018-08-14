@@ -3,24 +3,24 @@ clear
 close all
 
 % Kinematic Parameters
-L1 = .3; %.175;
-L2 = .15;
-l1 = .05; %.15;
-l2 = .02; %.075;
-h = .125;
-
-x = .07;
-y = .11;
 L1 = .08;
 L2 = .1;
 l1 = .08;
 l2 = .1;
 h = .125;
-
-P = h;
-
-
 r = sqrt(2000)/2+20;
+a11 = tan(pi/6)*6.5+7.7942;
+a12 = 6.5+13.5;
+a31 = 17.36+5;
+b11 = r*sin(pi/6);
+b12 = r*cos(pi/6);
+b31 = r;
+f = .05;
+
+P = h-f;
+
+
+
 
 
 theta = 0;
@@ -65,13 +65,7 @@ for i = 1:length(theta_list)
     P2 = P2 + P;
     P3 = P3 + P;
 
-    a11 = tan(pi/6)*6.5+7.7942;
-    a12 = 6.5+13.5;
-    a31 = 17.36+5;
-    b11 = r*sin(pi/6);
-    b12 = r*cos(pi/6);
-    b31 = r;
-    f = .05;
+    
     
     J1 = 1/P1*[a11*sin(theta)*(-cos(theta)*a11 + b11) + (-sin(theta)*sin(phi)*a11 - cos(phi)*a12 + b12)*(-cos(theta)*sin(phi)*a11) + (sin(theta)*cos(phi)*a11 - sin(phi)*a12 - f + h + z)*(cos(theta)*cos(phi)*a11);
         (-sin(theta)*sin(phi)*a11 - cos(phi)*a12 + b12)*(-sin(theta)*cos(phi)*a11 + sin(phi)*a12) + (sin(theta)*cos(phi)*a11 - sin(phi)*a12 - f + h + z)*(-sin(theta)*sin(phi)*a11 - cos(phi)*a12);
@@ -94,15 +88,15 @@ end
 % Actuator specs
 Pdot%*39.37
 Pforce%*.224809
-max(abs(Pdot),[],2)%*39.37
-max(abs(Pforce),[],2)%*.224809
+max_vel = max(max(abs(Pdot),[],2))%*39.37
+max_f = max(max(abs(Pforce),[],2))%*.224809
 
 
 % Motor specs
 d = .0254; % m
 l = 1/6*.0254; % m
 mu = .25; % friction
-T = Pforce*(d/2)*(l + pi*mu*d)/(pi*d - mu*l)
+T = max_f*(d/2)*(l + pi*mu*d)/(pi*d - mu*l)
 
-w = Pdot/l*60
+w = max_vel/l*60
 

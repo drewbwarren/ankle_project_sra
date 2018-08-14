@@ -3,13 +3,6 @@ clear
 close all
 
 % Kinematic Parameters
-% L1 = .3; %.175;
-% L2 = .15;
-% l1 = .05; %.15;
-% l2 = .02; %.075;
-% h = .125;
-
-
 L1 = .08;
 L2 = .1;
 L3 = L1;
@@ -18,8 +11,9 @@ l1 = .08;
 l2 = .1;
 l3 = l1;
 l4 = l2;
-f = 0.05;
-h = .125;
+f = .05;
+h = .125+f;
+P = h-f;
 
 P = h-f;
 
@@ -52,7 +46,7 @@ for i = 1:length(theta_list)
     phi_tau = phi_tau_list(i);
     
     
-    vars = table(L1,L2,l1,l2,theta,phi,h,P);
+    vars = table(L1,L2,l1,l2,theta,phi,h,P,f);
     [P1,P2,P3,P4] = position(vars);
     P1 = P1 + P;
     P2 = P2 + P;
@@ -81,14 +75,14 @@ end
 % Actuator specs
 Pdot%*39.37
 Pforce%*.224809
-max(abs(Pdot),[],2)%*39.37
-max(abs(Pforce),[],2)%*.224809
+max_vel = max(max(abs(Pdot),[],2))%*39.37
+max_f = max(max(abs(Pforce),[],2))%*.224809
 
 
 % Motor specs
 d = .0254; % m, 1 inch
 l = 1/6*.0254; % m, 1/6 inch pitch
 mu = .25; % friction
-T = max(max(abs(Pforce),[],2))*(d/2)*(l + pi*mu*d)/(pi*d - mu*l)
-w = max(max(abs(Pdot),[],2))/l*60
+T = max_f*(d/2)*(l + pi*mu*d)/(pi*d - mu*l)
+w = max_vel/l*60
 

@@ -3,15 +3,8 @@ clear
 close all
 
 % Kinematic Parameters
-L1 = .3; %.175;
-L2 = .15;
-l1 = .05; %.15;
-l2 = .02; %.075;
-h = .125;
 f = 0.05;
 
-x = .07;
-y = .11;
 L1 = .08;
 L2 = .1;
 l1 = .08;
@@ -66,14 +59,14 @@ end
 % Actuator specs
 Pdot%*39.37
 Pforce%*.224809
-max(abs(Pdot),[],2)%*39.37
-max(abs(Pforce),[],2)%*.224809
+max_vel = max(max(abs(Pdot),[],2))%*39.37
+max_f = max(max(abs(Pforce),[],2))%*.224809
 
 
 % Motor specs
 d = .0254; % m, 1 inch
 l = 1/6*.0254; % m, 1/6 inch pitch
 mu = .25; % friction
-T = max(max(abs(Pforce),[],2))*(d/2)*(l + pi*mu*d)/(pi*d - mu*l)
-w = max(max(abs(Pdot),[],2))/l*60
+T = max_f*(d/2)*(l + pi*mu*d)/(pi*d - mu*l)
+w = max_vel/l*60
 

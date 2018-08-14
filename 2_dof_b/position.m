@@ -8,17 +8,7 @@ L2 = u.L2;
 l1 = u.l1;
 l2 = u.l2;
 h = u.h;
-
-% Pback0 = sqrt(L1^2 + l1^2 + h^2 - 2*l1*(L1*cos(0) - h*sin(0))) - P;%cos(theta);
-% Pside0 = sqrt(L2^2 + l2^2 + h^2 - 2*l2*(L2*cos(0) + h*sin(0))) - P;
-% 
-% Pback = sqrt(L1^2 + l1^2 + h^2 - 2*l1*(L1*cos(theta) - h*sin(theta)));
-% Pside = sqrt(L2^2 + l2^2 + h^2 - 2*l2*(L2*cos(phi) + h*sin(phi)));
-% 
-% 
-% Pback = Pback - P; % - Pback0;
-% Pside = Pside - P; % - Pside0 ;
-
+f = u.f;
 
 c = [0 0 h]';
 
@@ -27,10 +17,10 @@ a2 = [0 -l2 0]';
 a3 = [l1 0 0]';
 a4 = [0 l2 0]';
 
-b1 = [-L1 0 0]';
-b2 = [0 -L2 0]';
-b3 = [L1 0 0]';
-b4 = [0 L2 0]';
+b1 = [-L1 0 f]';
+b2 = [0 -L2 f]';
+b3 = [L1 0 f]';
+b4 = [0 L2 f]';
 
 P1 = zeros(1,length(theta_list));
 P2 = zeros(1,length(theta_list));
