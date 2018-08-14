@@ -16,8 +16,8 @@ c = [0 0 h]';
 a1 = [-l1 0 0]';
 a2 = [0 -l2 0]';
 
-b1 = [-L1 0 0]';
-b2 = [0 -L2 0]';
+b1 = [-L1 0 .05]';
+b2 = [0 -L2 .05]';
 
 P1 = zeros(1,length(theta_list));
 P2 = zeros(1,length(theta_list));

@@ -10,11 +10,11 @@ l2 = u.l2;
 L3 = u.L3;
 l3 = u.l3;
 h = u.h;
-
+f = u.f
 
 
 x = 0.00;
-z = u.z;
+z = 0;%u.z;
 
 c = [-x 0 h+z]';
 
@@ -23,10 +23,10 @@ a2 = [0 -l2 -z]';
 a3 = [(l1+x) 0 -z]';
 a4 = [0 l2 -z]';
 
-b1 = [-L1 0 0]';
-b2 = [0 -L2 0]';
-b3 = [L1 0 0]';
-b4 = [0 L2 0]';
+b1 = [-L1 0 f]';
+b2 = [0 -L2 f]';
+b3 = [L1 0 f]';
+b4 = [0 L2 f]';
 
 P1 = zeros(1,length(theta_list));
 P2 = zeros(1,length(theta_list));

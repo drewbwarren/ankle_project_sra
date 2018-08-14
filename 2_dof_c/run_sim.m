@@ -36,7 +36,8 @@ h = .125;
 
 
 middle_leg = h;
-P = h;
+f = foot_h;
+P = h-f;
 arm_length = .05;
 arm_height = .06; % this is the height from the base of the foot that determines where the ankle is
 z = arm_height;
@@ -51,7 +52,7 @@ theta = 8*sin(2*t)*pi/180 - 0*pi/180;
 phi = 0*sin(4*t)*pi/180 + 0*pi/180;
 % phi = 0*t + 0*pi/180;
 % phi = t*100*pi/180;
-vars = table(L1,L2,L3,l1,l2,l3,theta,phi,h,P,z);
+vars = table(L1,L2,L3,l1,l2,l3,theta,phi,h,P,z,f);
 [P1,P2,P3,P4] = position(vars);
 
 P1 = cat(2,t',P1');

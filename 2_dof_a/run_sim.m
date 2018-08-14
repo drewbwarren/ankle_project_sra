@@ -43,7 +43,7 @@ h = .125;
 plat_w = l2*2;
 plat_l = l1*2;
 middle_leg = h;
-P = h;
+P = h-foot_h;
 
 
 
