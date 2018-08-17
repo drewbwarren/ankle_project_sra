@@ -19,17 +19,17 @@ leg1_top_width = .01;
 leg1_top_height = .01;
 leg1_top_thickness = .005;
 
-foot_h = .05;
+foot_h = .03;
 foot_l = .15;
 foot_w = .08;
 foot_p = 500/(foot_h*foot_l*foot_w)/2;
 
 
 % Kinematic parameters
-L1 = .2% + .1;
-L2 = .2 %+ .1;
-l1 = .2;
-l2 = .2;
+L1 = .15% + .1;
+L2 = .1 %+ .1;
+l1 = .15;
+l2 = .1;
 L3 = L1;
 l3 = l1;
 f = foot_h;
@@ -47,8 +47,8 @@ plat_l = (l1+l3-2*arm_length);
 
 % Kinematics
 t = linspace(0,tf,10000);
-theta = 2*sin(2*t)*pi/180 - 0*pi/180;
-phi = 2*sin(4*t)*pi/180 + 0*pi/180;
+theta = 1*sin(2*t)*pi/180 - 0*pi/180;
+phi = 1*sin(4*t)*pi/180 + 0*pi/180;
 % phi = 0*t + 0*pi/180;
 % phi = t*100*pi/180;
 vars = table(L1,L2,L3,l1,l2,l3,theta,phi,h,P,z,f);

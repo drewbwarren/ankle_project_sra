@@ -26,14 +26,6 @@ foot_p = 150/(foot_h*foot_l*foot_w)/2;
 
 
 % Kinematic parameters
-L1 = 0.2;
-L2 = 0.1;
-l1 = .33/2;
-l2 = .13/2;
-h = .125;
-
-
-
 L1 = .08;
 L2 = .1;
 l1 = .08;

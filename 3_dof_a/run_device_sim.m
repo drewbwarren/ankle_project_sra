@@ -55,7 +55,7 @@ P = actuator_base_l + actuator_extender_l; P = P/100; % P = actuator_base_l/100;
 t = linspace(0,tf,10000);
 theta = 20*sin(2*t)*pi/180 - 0*pi/180;
 phi = 15*sin(4*t)*pi/180 + 0*pi/180;
-z = .0*sin(t);
+z = .1*sin(t);
 
 vars = table(r,theta,phi,h,P,z);
 [P1,P2,P3] = position(vars);
