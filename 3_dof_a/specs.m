@@ -8,10 +8,10 @@ L2 = .1;
 l1 = .08;
 l2 = .1;
 h = .125;
-r = sqrt(2000)/2+20;
-a11 = tan(pi/6)*6.5+7.7942;
-a12 = 6.5+13.5;
-a31 = 17.36+5;
+r = sqrt(2000)/2+20; r = r/100;
+a11 = tan(pi/6)*6.5+7.7942; a11 = a11/100;
+a12 = 6.5+13.5; a12 = a12/100;
+a31 = 17.36+5; a31 = a31/100;
 b11 = r*sin(pi/6);
 b12 = r*cos(pi/6);
 b31 = r;
@@ -71,14 +71,15 @@ for i = 1:length(theta_list)
         (-sin(theta)*sin(phi)*a11 - cos(phi)*a12 + b12)*(-sin(theta)*cos(phi)*a11 + sin(phi)*a12) + (sin(theta)*cos(phi)*a11 - sin(phi)*a12 - f + h + z)*(-sin(theta)*sin(phi)*a11 - cos(phi)*a12);
         (sin(theta)*cos(phi)*a11 - sin(phi)*a12 - f + h + z)]';
     J2 = 1/P2*[a11*sin(theta)*(-cos(theta)*a11 + b11) + (-sin(theta)*sin(phi)*a11 + cos(phi)*a12 - b12)*(-cos(theta)*sin(phi)*a11) + (sin(theta)*cos(phi)*a11 + sin(phi)*a12 - f + h + z)*(cos(theta)*cos(phi)*a11);
-        (-sin(theta)*sin(phi)*a11 + cos(phi)*a12 - b12)*(-sin(theta)*cos(phi)*a11 - sin(phi)*a12) + (sin(theta)*cos(phi)*a11 + sin(phi)*a12 - f + h + z)*(-sin(theta)*sin(phi)*a11 + sin(phi)*a12);
+        (-sin(theta)*sin(phi)*a11 + cos(phi)*a12 - b12)*(-sin(theta)*cos(phi)*a11 - sin(phi)*a12) + (sin(theta)*cos(phi)*a11 + sin(phi)*a12 - f + h + z)*(-sin(theta)*sin(phi)*a11 + cos(phi)*a12);
         (sin(theta)*cos(phi)*a11 + sin(phi)*a12 - f + h + z)]';
-    J3 = 1/P3*[-a31*sin(theta)*(cos(theta)*a31 - r) + sin(theta)*sin(phi)^2*cos(theta)*a31^2 + (-sin(theta)*cos(phi)*a31 - f + h + z)*(-cos(theta)*cos(phi)*a31);
-        sin(theta)^2*sin(phi)*cos(phi)*a31^2 + (-sin(theta)*cos(phi)*a31 - f + h + z)*(sin(theta)*sin(phi)*a31);
+    J3 = 1/P3*[-a31*sin(theta)*(cos(theta)*a31 - r) + sin(theta)*cos(phi)^2*cos(theta)*a31^2 + (-sin(theta)*cos(phi)*a31 - f + h + z)*(-cos(theta)*cos(phi)*a31);
+        -sin(theta)^2*sin(phi)*cos(phi)*a31^2 + (-sin(theta)*cos(phi)*a31 - f + h + z)*(sin(theta)*sin(phi)*a31);
         (-sin(theta)*cos(phi)*a31 - f + h + z)]';
         
         
     J = inv([J1; J2; J3]);
+    inv(J)
 
     Pdot(:,i) = inv(J)*[thetadot phidot zdot]';
     Pforce(:,i) = J'*[theta_tau phi_tau z_f]';
@@ -86,17 +87,15 @@ for i = 1:length(theta_list)
 end
 
 % Actuator specs
-Pdot%*39.37
-Pforce%*.224809
-max_vel = max(max(abs(Pdot),[],2))%*39.37
-max_f = max(max(abs(Pforce),[],2))%*.224809
+max_vel = max(max(abs(Pdot),[],2))
+max_f = max(max(abs(Pforce),[],2))
 
+% Screw dimensions
+d = [.5 .5 .625 .625 .75 .75 .75 .875 1 1 1 1 1]*.0254; % m
+l = [.125 .1 1/6 .125 .2 1/6 .125 1/6 .25 .2 1/6 .125 .1]*.0254; % m
+mu = .25; % friction
 
 % Motor specs
-d = .0254; % m
-l = 1/6*.0254; % m
-mu = .25; % friction
-T = max_f*(d/2)*(l + pi*mu*d)/(pi*d - mu*l)
-
-w = max_vel/l*60
+T = max_f*(d./2).*(l + pi*mu*d)./(pi*d - mu*l)
+w = max_vel./l.*60
 

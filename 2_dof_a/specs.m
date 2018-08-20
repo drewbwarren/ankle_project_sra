@@ -57,16 +57,15 @@ for i = 1:length(theta_list)
 end
 
 % Actuator specs
-Pdot%*39.37
-Pforce%*.224809
-max_vel = max(max(abs(Pdot),[],2))%*39.37
-max_f = max(max(abs(Pforce),[],2))%*.224809
+max_vel = max(max(abs(Pdot),[],2))
+max_f = max(max(abs(Pforce),[],2))
 
+% Screw dimensions
+d = [.5 .5 .625 .625 .75 .75 .75 .875 1 1 1 1 1]*.0254; % m
+l = [.125 .1 1/6 .125 .2 1/6 .125 1/6 .25 .2 1/6 .125 .1]*.0254; % m
+mu = .25; % friction
 
 % Motor specs
-d = .0254; % m, 1 inch
-l = 1/6*.0254; % m, 1/6 inch pitch
-mu = .25; % friction
-T = max_f*(d/2)*(l + pi*mu*d)/(pi*d - mu*l)
-w = max_vel/l*60
+T = max_f*(d./2).*(l + pi*mu*d)./(pi*d - mu*l)
+w = max_vel./l.*60
 
