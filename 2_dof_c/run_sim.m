@@ -47,8 +47,8 @@ plat_l = (l1+l3-2*arm_length);
 
 % Kinematics
 t = linspace(0,tf,10000);
-theta = 20*sin(2*t)*pi/180 - 0*pi/180;
-phi = 0*sin(2*t)*pi/180 + 0*pi/180;
+theta = 8*sin(2*t)*pi/180 - 0*pi/180;
+phi = 10*sin(4*t)*pi/180 + 0*pi/180;
 % phi = 0*t + 0*pi/180;
 % phi = t*100*pi/180;
 vars = table(L1,L2,L3,l1,l2,l3,theta,phi,h,P,z,f);
