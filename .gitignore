@@ -4,6 +4,6 @@ slprj
 *.autosave
 *.m~
 *.r2017b
-*.slx*
+*.slx.*
 captures
 
